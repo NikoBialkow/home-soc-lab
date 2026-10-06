@@ -38,6 +38,24 @@ The environment will be used to simulate attacks, generate security events and i
 
 Work in progress.
 
+## Wazuh
+
+Wazuh is used as the SIEM/XDR platform for collecting and analyzing security events.
+
+[Wazuh documentation](wazuh/README.md)
+
+## OPNsense
+
+OPNsense is used as the firewall and network security gateway in the lab.
+
+[OPNsense documentation](opnsense/README.md)
+
+## Suricata
+
+Suricata is used as the IDS/IPS component of the lab.
+
+[Suricata documentation](suricata/README.md)
+
 ## Current Progress
 
 - [x] Ubuntu Server deployed
