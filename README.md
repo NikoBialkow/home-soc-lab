@@ -118,7 +118,7 @@ Detailed detection write-ups documenting the test activity, detection logic, ale
 
 - [ICMP Test Detection](detections/icmp-test.md)
 - [TCP SYN Scan Detection](detections/tcp-syn-scan.md)
-- 
+  
 ### ICMP Test Detection
 
 Custom Suricata rule:
