@@ -34,7 +34,7 @@ Typical use cases include:
 Example ICMP capture:
 
 ```bash
-sudo tcpdump -i <INTERFACE> -n icmp
+sudo tcpdump -i 192.168.XX.XX -n icmp
 ```
 
 Options:
@@ -46,7 +46,7 @@ Options:
 Example remote syslog capture:
 
 ```bash
-sudo tcpdump -i <INTERFACE> -n udp port 514
+sudo tcpdump -i 192.168.XX.XX -n udp port 514
 ```
 
 This was used during troubleshooting to verify that OPNsense was sending remote syslog traffic to the Ubuntu/Wazuh server.
@@ -96,7 +96,7 @@ tls
 ### Specific host
 
 ```text
-ip.addr == <LAB_HOST>
+ip.addr == 192.168.XX.XX
 ```
 
 ## Follow TCP Stream
