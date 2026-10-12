@@ -30,7 +30,7 @@ ICMP Echo Request traffic was generated from the monitored test system.
 Example:
 
 ```powershell
-ping <TEST_DESTINATION>
+ping 192.168.XX.XX
 ```
 
 ## Detection Flow
