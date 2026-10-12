@@ -80,9 +80,6 @@ Examples of filters used during analysis:
 
 ### ICMP
 
-```text
-icmp
-```
 ### ICMP Analysis Evidence
 
 ICMP Echo Request / Echo Reply traffic inspected in Wireshark:
@@ -90,9 +87,6 @@ ICMP Echo Request / Echo Reply traffic inspected in Wireshark:
 ![Wireshark ICMP Analysis](../screenshots/wireshark-icmp-analysis.png)
 ### DNS
 
-```text
-dns
-```
 ### DNS Analysis Evidence
 
 DNS query and response traffic inspected in Wireshark:
