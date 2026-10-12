@@ -42,6 +42,11 @@ Options:
 - `-i` - selects the network interface
 - `-n` - disables DNS and hostname resolution
 - `icmp` - displays only ICMP traffic
+### Evidence
+
+ICMP traffic captured with `tcpdump` on the monitored lab interface:
+
+![tcpdump ICMP Capture](../screenshots/tcpdump-icmp.png)
 
 Example remote syslog capture:
 
@@ -50,7 +55,11 @@ sudo tcpdump -i 192.168.XX.XX -n udp port 514
 ```
 
 This was used during troubleshooting to verify that OPNsense was sending remote syslog traffic to the Ubuntu/Wazuh server.
+### Evidence
 
+Remote syslog traffic captured on the Ubuntu/Wazuh server:
+
+![tcpdump Syslog UDP 514](../screenshots/tcpdump-syslog-514.png)
 ## Wireshark
 
 Wireshark is used for graphical packet analysis.
@@ -74,13 +83,21 @@ Examples of filters used during analysis:
 ```text
 icmp
 ```
+### ICMP Analysis Evidence
 
+ICMP Echo Request / Echo Reply traffic inspected in Wireshark:
+
+![Wireshark ICMP Analysis](../screenshots/wireshark-icmp-analysis.png)
 ### DNS
 
 ```text
 dns
 ```
+### DNS Analysis Evidence
 
+DNS query and response traffic inspected in Wireshark:
+
+![Wireshark DNS Analysis](../screenshots/wireshark-dns-analysis.png)
 ### TCP
 
 ```text
