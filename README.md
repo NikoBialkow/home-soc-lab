@@ -292,7 +292,21 @@ This project demonstrates practical experience with:
 - troubleshooting
 - incident investigation workflow
 - Git and GitHub documentation
+## Public Repository Security
 
+This repository contains sanitized documentation intended for portfolio purposes.
+
+The following information is intentionally excluded:
+
+- exact IP addressing
+- authentication data
+- API tokens
+- private keys
+- certificates
+- complete firewall backups
+- full configuration exports
+
+Sensitive configuration backups are stored separately in a private repository.
 ## Future Development
 
 The next stages of the project will focus on documenting existing detections and later introducing Kali Linux for controlled Red Team and Purple Team testing.
