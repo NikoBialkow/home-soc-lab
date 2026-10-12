@@ -112,6 +112,13 @@ Custom Decoder + Rules
 ```
 ## Implemented Detections
 
+## Detection Reports
+
+Detailed detection write-ups documenting the test activity, detection logic, alert flow and analysis:
+
+- [ICMP Test Detection](detections/icmp-test.md)
+- [TCP SYN Scan Detection](detections/tcp-syn-scan.md)
+- 
 ### ICMP Test Detection
 
 Custom Suricata rule:
