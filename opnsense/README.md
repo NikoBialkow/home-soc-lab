@@ -2,77 +2,236 @@
 
 ## Purpose
 
-OPNsense is used as the firewall and network security gateway in the Home SOC Lab.
+OPNsense is used as the firewall, network gateway and security control point in the Home SOC Lab.
 
-Its main role is to control traffic between the lab networks and provide a platform for network security monitoring.
+It provides:
+
+- network segmentation
+- routing
+- DHCP
+- firewall enforcement
+- network monitoring
+- Suricata IDS integration
+- remote log forwarding
 
 ## Role in the Lab
 
-OPNsense is responsible for:
+OPNsense separates the test environment from the rest of the network and provides a controlled location for traffic inspection.
 
-- routing traffic between virtual networks
-- firewall rule management
-- network segmentation
-- monitoring traffic between hosts
-- hosting Suricata IDS/IPS
-- providing visibility into network communication
+Its main responsibilities include:
 
-## Environment
+- routing traffic between lab segments
+- enforcing firewall rules
+- providing network services for test systems
+- hosting Suricata IDS
+- forwarding security events to the SIEM
+- supporting controlled detection testing
+
+## Deployment
 
 OPNsense is deployed as a virtual machine in VirtualBox.
 
-The firewall is positioned between the lab systems and the external network.
+The environment contains:
 
-The environment includes:
+- an external-facing network interface
+- an internal SOC-LAN interface
+- an isolated test network for monitored systems
 
-- Ubuntu Server
-- Windows 10
-- Wazuh
-- Suricata
-- VirtualBox networking
+Detailed addressing information and full configuration backups are intentionally not included in the public repository.
 
-## Configuration
+## Network Segmentation
 
-The initial OPNsense configuration included:
+The SOC-LAN network is used for:
 
-- assigning network interfaces
-- configuring LAN connectivity
-- configuring firewall rules
-- enabling Suricata
-- verifying connectivity between virtual machines
+- monitored endpoints
+- test systems
+- controlled scanning
+- IDS validation
+- future Red Team / Purple Team exercises
+
+OPNsense acts as the gateway for this segment.
 
 ## Firewall
 
-Firewall rules are used to control communication between systems inside the lab.
+Firewall rules are used to control communication between the lab network and other network segments.
 
-The configuration is intended to provide enough connectivity for monitoring and testing while still allowing traffic to be restricted when needed.
+During setup, the following areas were verified:
 
-## Suricata Integration
+- gateway connectivity
+- traffic forwarding
+- required outbound connectivity
+- internal network access
+- Suricata traffic visibility
+- remote log delivery
 
-Suricata is running directly on OPNsense and is used to inspect network traffic for suspicious activity.
+## Suricata IDS
 
-Detailed Suricata configuration is documented here:
+Suricata runs directly on OPNsense and monitors traffic from the internal lab network.
+
+Current functionality includes:
+
+- ET Open rules
+- EVE JSON output
+- custom local rules
+- network alert generation
+- remote syslog forwarding
+- integration with Wazuh
+
+Custom detections currently include:
+
+```text
+SID 1000001
+SOC LAB ICMP TEST
+```
+
+and:
+
+```text
+SID 1000002
+SOC LAB POSSIBLE TCP SYN SCAN
+```
+
+More information:
 
 [Suricata documentation](../suricata/README.md)
 
+## Remote Logging
+
+Suricata events are forwarded from OPNsense to the Ubuntu/Wazuh server using remote syslog.
+
+The logging pipeline is:
+
+```text
+OPNsense
+   |
+   v
+Suricata
+   |
+   v
+EVE JSON / Syslog
+   |
+   v
+Ubuntu rsyslog
+   |
+   v
+Wazuh
+```
+
+The public repository intentionally omits exact destination addresses and environment-specific configuration values.
+
+## EVE JSON
+
+EVE JSON is used because it provides structured fields that can be parsed by Wazuh.
+
+Examples include:
+
+- source address
+- destination address
+- source port
+- destination port
+- protocol
+- signature ID
+- signature name
+- severity
+- flow information
+
+This makes it possible to create custom Wazuh detection rules based on Suricata events.
+
 ## Troubleshooting
 
-During the lab setup, network connectivity and monitoring configuration required verification of:
+Several issues were encountered during the initial setup.
 
-- assigned interfaces
-- firewall rules
-- virtual network settings
-- routing
-- Suricata interface selection
+### Suricata running but no alerts
 
-These troubleshooting steps helped confirm that OPNsense was correctly positioned inside the lab network.
+Suricata was active, but alerts were initially not generated correctly.
+
+The following areas were verified:
+
+- monitored interface
+- IDS service status
+- active rules
+- rule loading
+- network traffic
+- EVE output
+- log forwarding
+
+### Custom rule parsing error
+
+One custom rule contained an invalid action:
+
+```text
+lert
+```
+
+instead of:
+
+```text
+alert
+```
+
+The issue was identified through Suricata logs and corrected.
+
+This was a useful example of troubleshooting a rule parsing problem based on log output.
+
+### Remote syslog troubleshooting
+
+Remote logs initially did not appear on the Ubuntu/Wazuh server.
+
+Troubleshooting included:
+
+- verifying UDP syslog transport
+- checking rsyslog listener status
+- using tcpdump to confirm packet delivery
+- verifying source translation through the virtualization layer
+- adjusting the rsyslog filter
+
+This confirmed that the problem was related to the source address seen after virtualization/NAT.
+
+## Testing
+
+The OPNsense and Suricata configuration has been tested using:
+
+- ICMP traffic
+- Nmap SYN scans
+- packet inspection
+- Suricata alert validation
+- remote syslog verification
+- Wazuh alert verification
+
+Example controlled test:
+
+```powershell
+nmap -sS <LAB_GATEWAY>
+```
+
+The scan generated the custom TCP SYN scan detection.
+
+## Backup
+
+A full OPNsense XML configuration backup is stored separately in a private repository.
+
+The public repository contains documentation and sanitized examples only.
+
+## Security Considerations
+
+The following information is intentionally excluded from this public repository:
+
+- exact host addresses
+- full DHCP configuration
+- authentication data
+- certificates
+- private keys
+- full firewall rulesets
+- complete OPNsense configuration backups
 
 ## Future Improvements
 
 Planned improvements include:
 
-- more restrictive firewall rules
-- additional network segmentation
-- VLAN configuration
-- logging and monitoring improvements
-- testing blocked and allowed traffic
+- additional network segments
+- additional IDS detections
+- stricter firewall policies
+- Kali Linux integration
+- Red Team / Purple Team scenarios
+- possible VLAN-based segmentation
+- migration to a dedicated virtualization platform in the future
