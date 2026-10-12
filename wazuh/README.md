@@ -80,7 +80,11 @@ Event ID 22 - DNS Query
 ```
 
 These events provide significantly more visibility than standard Windows event logging alone.
+### Evidence
 
+Example Sysmon Process Create event collected by Wazuh:
+
+![Sysmon Process Create](../screenshots/sysmon-process-create.png)
 ## Suricata Integration
 
 Suricata events are forwarded from OPNsense using remote syslog.
@@ -186,7 +190,11 @@ This rule is linked to the Suricata custom detection:
 SID: 1000001
 SOC LAB ICMP TEST
 ```
+### Evidence
 
+Wazuh alert generated from the custom Suricata ICMP detection:
+
+![Wazuh ICMP Alert](../screenshots/wazuh-icmp-alert.png)
 ### TCP SYN Scan Alert
 
 ```text
@@ -201,6 +209,11 @@ This rule is linked to the Suricata custom detection:
 SID: 1000002
 SOC LAB POSSIBLE TCP SYN SCAN
 ```
+### Evidence
+
+Wazuh alert generated from the custom Suricata TCP SYN scan detection:
+
+![Wazuh SYN Scan Alert](../screenshots/wazuh-syn-scan-alert.png)
 
 This creates a simple severity hierarchy:
 
@@ -239,7 +252,11 @@ Phase 3 - Rule filtering
 ```
 
 This confirmed that the event could be processed correctly before testing it live.
+### Evidence
 
+Validation of the custom Suricata decoder and Wazuh rule using `wazuh-logtest`:
+
+![Wazuh Logtest SYN Scan](../screenshots/wazuh-logtest-syn-scan.png)
 ## Live Alert Testing
 
 After validating the rules with `wazuh-logtest`, controlled traffic was generated inside the lab.
