@@ -78,31 +78,50 @@ Captured traffic is used to inspect:
 
 Examples of filters used during analysis:
 
-### ICMP
-
 ### ICMP Analysis Evidence
 
 ICMP Echo Request / Echo Reply traffic inspected in Wireshark:
+The screenshot below shows ICMP Echo Request and Echo Reply packets captured in Wireshark.
+
+The packet details include the ICMP message type, sequence number and checksum, which can be used to verify basic network connectivity and analyze request/response behavior.
 
 ![Wireshark ICMP Analysis](../screenshots/wireshark-icmp-analysis.png)
-### DNS
+
+This capture demonstrates how ICMP traffic can be inspected at packet level.  
+It confirms successful request/response communication and shows metadata such as message type, sequence number and TTL.
 
 ### DNS Analysis Evidence
 
-DNS query and response traffic inspected in Wireshark:
+The screenshot below shows a DNS query and response captured in Wireshark.
+
+The packet details include the queried domain, query type, transaction ID and DNS response information.
 
 ![Wireshark DNS Analysis](../screenshots/wireshark-dns-analysis.png)
-### TCP
 
-```text
-tcp
-```
+This capture demonstrates how DNS traffic can be analyzed to identify name resolution activity.  
+It shows how a client requests an IP address for a domain and how the DNS server returns the corresponding response.
 
-### TLS
+### TCP traffic analysis
 
-```text
-tls
-```
+The screenshot below shows TCP communication captured in Wireshark.
+
+The packet details include source and destination ports, sequence and acknowledgment numbers, and TCP flags such as SYN and ACK.
+
+![Wireshark TCP Analysis](../screenshots/wireshark-tcp-analysis.png)
+
+This capture demonstrates how TCP connection establishment and session state can be analyzed.  
+The SYN, SYN-ACK and ACK packets illustrate the TCP three-way handshake used to establish a reliable connection.
+
+### TLS traffic analysis
+
+The screenshot below shows a TLS 1.2 Client Hello packet captured in Wireshark.
+
+It includes the handshake type, cipher suites and Server Name Indication (SNI), which identifies the requested hostname during encrypted communication.
+
+![Wireshark TLS Analysis](../screenshots/wireshark-tls-analysis.png)
+
+This capture demonstrates that even though the application payload is encrypted, useful metadata is still visible.  
+Wireshark can reveal the TLS version, handshake type, supported cipher suites and SNI.
 
 ### Specific host
 
