@@ -110,7 +110,11 @@ The rule uses:
 - thresholding within a short time window
 
 This makes it useful for detecting controlled scanning activity in the lab.
+### Evidence
 
+Suricata alert generated after a controlled Nmap SYN scan:
+
+![Suricata SYN Scan Alert](../screenshots/suricata-syn-scan-alert.png)
 ## Detection Logic
 
 The custom SYN scan rule is conceptually based on:
@@ -241,7 +245,14 @@ The current Suricata deployment has been tested with:
 - tcpdump
 - remote syslog
 - Wazuh alert generation
+### SIEM Verification
 
+The same detection was forwarded to Wazuh and processed by a dedicated custom rule.
+
+Related evidence is available in the Wazuh documentation:
+
+- [Wazuh ICMP Alert](../screenshots/wazuh-icmp-alert.png)
+- [Wazuh SYN Scan Alert](../screenshots/wazuh-syn-scan-alert.png)
 ## Security Considerations
 
 The public repository intentionally does not contain:
