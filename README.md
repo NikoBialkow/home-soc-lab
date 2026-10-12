@@ -74,10 +74,10 @@ Current addressing:
 
 | System | IP address | Role |
 |---|---|---|
-| OPNsense LAN | `192.168.50.1` | SOC-LAN gateway |
-| Windows Test VM | `192.168.50.108` | monitored endpoint / test source |
-| Ubuntu / Wazuh | `192.168.1.20` | SIEM and log collector |
-| Windows Host | `192.168.1.11` | VirtualBox host |
+| OPNsense LAN | `192.168.XX.XX` | SOC-LAN gateway |
+| Windows Test VM | `192.168.XX.XX` | monitored endpoint / test source |
+| Ubuntu / Wazuh | `192.168.XX.XX` | SIEM and log collector |
+| Windows Host | `192.168.XX.XX` | VirtualBox host |
 
 ## Detection Pipeline
 
@@ -143,7 +143,7 @@ The rule detects multiple TCP SYN packets from the same source within a short ti
 The detection was tested using Nmap:
 
 ```powershell
-nmap -sS 192.168.50.1
+nmap -sS 192.168.XX.X
 ```
 
 The scan generated a Suricata alert which was forwarded to Wazuh and processed by a dedicated Wazuh rule.
