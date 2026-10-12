@@ -109,7 +109,7 @@ Custom Decoder + Rules
        |
        v
    Wazuh Alert
-```text
+```
 ## Implemented Detections
 
 ### ICMP Test Detection
@@ -119,7 +119,7 @@ Custom Suricata rule:
 ```text
 SID: 1000001
 Signature: SOC LAB ICMP TEST
-
+```
 This rule is used to verify the complete detection pipeline from network traffic to a Wazuh alert.
 The test confirms that:
 - Suricata inspects the traffic
