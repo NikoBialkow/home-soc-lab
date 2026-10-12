@@ -109,7 +109,7 @@ Custom Decoder + Rules
        |
        v
    Wazuh Alert
-
+```text
 ## Implemented Detections
 
 ### ICMP Test Detection
