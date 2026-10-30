@@ -266,7 +266,7 @@ Expanded the isolated cybersecurity lab with segmented attacker and target netwo
 - Reviewed Windows Sysmon Event ID 1 telemetry.
 - Generated and analyzed controlled ICMP and Nmap traffic.
 
-**[Read the October 2026 Progress Report](docs/october-2026-progress-181.md)**
+**[Read the October 2026 Progress Report](docs/october-2026-progress_181.md)**
 
 ## Planned / Next Steps
 
