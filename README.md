@@ -254,16 +254,38 @@ Completed:
 - [x] tcpdump packet capture
 - [x] private configuration backup repository created
 
-Planned:
+## Recent Progress — October 2026
 
-- [ ] detailed detection reports
-- [ ] additional endpoint detections
-- [ ] additional network detections
-- [ ] Kali Linux lab
-- [ ] controlled Red Team / Purple Team exercises
-- [ ] Active Directory lab
-- [ ] Microsoft Sentinel / cloud security lab
+Expanded the isolated cybersecurity lab with segmented attacker and target networks, additional Suricata telemetry, and Wazuh monitoring.
 
+### Completed
+- Configured RED_ATTACK and RED_TARGET network segments using VirtualBox and OPNsense.
+- Configured Kali Linux firewall policies using nftables.
+- Extended Suricata EVE JSON logging for multiple network protocols.
+- Verified Suricata alert visibility in Wazuh.
+- Reviewed Windows Sysmon Event ID 1 telemetry.
+- Generated and analyzed controlled ICMP and Nmap traffic.
+
+**[Read the October 2026 Progress Report](docs/october-2026-progress.md)**
+
+## Planned / Next Steps
+
+### Detection Engineering
+- Develop custom Suricata detection rules.
+- Create additional Wazuh detection and correlation rules.
+- Investigate network alerts and document incident timelines.
+- Expand detection scenarios using realistic background traffic.
+
+### Security Monitoring
+- Improve Sysmon telemetry collection and analysis.
+- Develop practical SOC investigation scenarios.
+- Document alert triage and incident response workflows.
+
+### Lab Development
+- Expand controlled Red Team / Blue Team testing.
+- Validate network segmentation and firewall policies.
+- Create additional attack detection and investigation reports.
+- Document lessons learned and remediation recommendations.
 ## Repository Structure
 
 ```text
