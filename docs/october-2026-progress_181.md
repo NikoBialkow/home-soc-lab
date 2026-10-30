@@ -10,22 +10,22 @@ During October 2026, the lab was expanded with separate attacker and target netw
 
 | Component | Role | Network / address |
 | --- | --- | --- |
-| OPNsense | Firewall, routing and Suricata sensor | Gateway `192.168.60.1` on RED_ATTACK; `192.168.70.1` on RED_TARGET |
-| Kali Linux | Controlled traffic generator | `RED_ATTACK`: `192.168.60.10/24` |
-| Metasploitable 2 | Intentionally vulnerable lab target | `RED_TARGET`: `192.168.70.0/24` (exact host IP not documented here) |
+| OPNsense | Firewall, routing and Suricata sensor | Gateway `192.168.XX.XX` on RED_ATTACK; `192.168.XX.XX` on RED_TARGET |
+| Kali Linux | Controlled traffic generator | `RED_ATTACK`: `192.168.XX.XX/24` |
+| Metasploitable 2 | Intentionally vulnerable lab target | `RED_TARGET`: `192.168.XX.XX/24` (exact host IP not documented here) |
 | Ubuntu Server | Wazuh and rsyslog | Home SOC environment |
 | Windows 10 endpoint | Sysmon event source | Home SOC environment |
 
 ### Logical traffic path
 
 ```text
-RED_ATTACK (192.168.60.0/24)
-    Kali Linux (192.168.60.10)
+RED_ATTACK (192.168.XX.XX/24)
+    Kali Linux (192.168.XX.XX)
               |
        OPNsense firewall
         Suricata sensor
               |
-RED_TARGET (192.168.70.0/24)
+RED_TARGET (192.168.XX.XX/24)
     Metasploitable 2
 
 Suricata EVE telemetry --> log forwarding --> Wazuh --> analyst review
